@@ -9,6 +9,7 @@ function ManagementDashboard() {
   const { addKeyword, selectedlang } = useTranslation();
   const [newWord, setNewWord] = useState('');
   const [newTranslation, setNewTranslation] = useState('');
+  const [showAddKeyword, setShowAddKeyword] = useState(false)
 
   const handleAddKeyword = () => {
     if (newWord && newTranslation) {
@@ -16,6 +17,7 @@ function ManagementDashboard() {
       setNewWord('');
       setNewTranslation('');
     }
+    setShowAddKeyword((prev) => !prev)
   };
 
   return (
@@ -23,23 +25,28 @@ function ManagementDashboard() {
       <h1>Translation Management</h1>
       <Languages />
       <KeywordList isEditable={true} />
-      <div className="add-keyword">
-        <input
-          type="text"
-          placeholder="New keyword"
-          value={newWord}
-          onChange={(e) => setNewWord(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder={`Translation in ${selectedlang}`}
-          value={newTranslation}
-          onChange={(e) => setNewTranslation(e.target.value)}
-        />
+
+      <div className="add-keyword" >
         <button onClick={handleAddKeyword}>+ Add Keyword</button>
+        {showAddKeyword &&
+          <>
+            <input
+              type="text"
+              placeholder="New keyword"
+              value={newWord}
+              onChange={(e) => setNewWord(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder={`Translation in ${selectedlang}`}
+              value={newTranslation}
+              onChange={(e) => setNewTranslation(e.target.value)}
+            />
+          </>
+        }
       </div>
     </div>
-  );
+  )
 };
 
 export default ManagementDashboard;
