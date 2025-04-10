@@ -8,8 +8,8 @@ function App() {
     <TranslationsProvider>
       <BrowserRouter>
         <nav>
-          <Link to="/">Management Dashboard</Link>
-          <Link to="/public">Public View</Link>
+          <Link to="/translations">Management Dashboard</Link>
+          <Link to="/">Public View</Link>
         </nav>
         <Routes>
           <Route path="/" index element={<Main />} />

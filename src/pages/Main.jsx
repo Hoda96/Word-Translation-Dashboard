@@ -1,3 +1,6 @@
+import { DndContext } from "@dnd-kit/core/dist";
+import KeywordItems from "../components/KeywordItems";
+import KeywordList from "../components/KeywordList";
 import Languages from "../components/languages";
 import { useTranslation } from "../hook/useTranslation";
 
@@ -8,20 +11,15 @@ function Main() {
 
   return (
     <>
-      <Languages />
-      {keywords.map((keyword) => (
-        < div key={keyword.id} >
-          <div>{keyword.word}</div>
-          <div>{Object.entries(keyword.translations).map(([lang, translation]) => (
-            <div key={lang}>
-              {lang}: {translation}
-            </div>
-          ))}</div>
-        </div >
-      ))
-      }
-      <div>Selected Language: {selectedlang}</div>
-      <div>Available Languages: {languages.join(", ")}</div>
+      <div className="public-view">
+        <div className="header">
+          <h1>Word Translations</h1>
+          <Languages />
+        </div>
+        <KeywordList isEditable={false} />
+
+      </div>
+
     </>
   )
 }
