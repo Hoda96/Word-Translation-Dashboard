@@ -17,7 +17,7 @@ function TranslationsProvider({ children }) {
         return storedKeywords ? JSON.parse(storedKeywords) : initialvalues.keyword
     });
 
-    const [selectedlang, setSelectedLang] = useState("en");
+    const [selectedLang, setSelectedLang] = useState("en");
 
     const addKeyword = (word, translation, lang) => {
         const existingKeyword = keywords.find((k) => k.word === word);
@@ -117,7 +117,7 @@ function TranslationsProvider({ children }) {
         <TranslationsContext.Provider
             value=
             {{
-                keywords, reorderKeywords, addKeyword, changeTranslation, languages: initialvalues.languages, selectedlang, setSelectedLang
+                keywords, reorderKeywords, addKeyword, changeTranslation, languages: initialvalues.languages, selectedLang, setSelectedLang
             }}
         >
             {children}

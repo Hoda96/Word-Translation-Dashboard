@@ -1,29 +1,30 @@
-import { useState } from 'react';
-import { useTranslation } from '../hook/useTranslation'
+// src/components/KeywordItems.jsx
+import { useTranslation } from '../hook/useTranslation';
 
-function KeywordItems({ keyword, language }) {
-  const [isEditable, setIsEditable] = useState(false);
-  const { changeTranslation } = useTranslation();
-  console.log('keyword', keyword, language);
+const KeywordItems = ({ keyword, language, isEditable }) => {
+  const { updateTranslation } = useTranslation();
+  console.log('keyword.translations[language]', keyword.translations[language]);
+
+  const handleInputMouseDown = (e) => {
+    e.stopPropagation(); // Prevent drag from starting when clicking the input
+  };
 
   return (
     <div className="keyword-item">
-
       <span>{keyword.word}</span>
-      <span onClick={(prev) => setIsEditable(!prev)}>{keyword.translations[language] || '...'}</span>
-
-      {isEditable &&
+      {isEditable ? (
         <input
           type="text"
           value={keyword.translations[language] || ''}
-          onChange={(e) => changeTranslation(keyword.id, language, e.target.value)}
+          onChange={(e) => updateTranslation(keyword.id, language, e.target.value)}
+          onMouseDown={handleInputMouseDown}
           placeholder="Enter translation"
         />
-
-      }
-
+      ) : (
+        <span>{keyword.translations[language] || 'No translation yet'}</span>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default KeywordItems
+export default KeywordItems;

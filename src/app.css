@@ -21,6 +21,7 @@ h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -32,8 +33,10 @@ h1 {
 }
 
 .language-selector select {
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .keyword-list {

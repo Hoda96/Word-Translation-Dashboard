@@ -6,14 +6,14 @@ import KeywordList from '../components/KeywordList';
 
 
 function ManagementDashboard() {
-  const { addKeyword, selectedlang } = useTranslation();
+  const { addKeyword, selectedLang } = useTranslation();
   const [newWord, setNewWord] = useState('');
   const [newTranslation, setNewTranslation] = useState('');
   const [showAddKeyword, setShowAddKeyword] = useState(false)
 
   const handleAddKeyword = () => {
     if (newWord && newTranslation) {
-      addKeyword(newWord, newTranslation, selectedlang);
+      addKeyword(newWord, newTranslation, selectedLang);
       setNewWord('');
       setNewTranslation('');
     }
@@ -38,7 +38,7 @@ function ManagementDashboard() {
             />
             <input
               type="text"
-              placeholder={`Translation in ${selectedlang}`}
+              placeholder={`Translation in ${selectedLang}`}
               value={newTranslation}
               onChange={(e) => setNewTranslation(e.target.value)}
             />

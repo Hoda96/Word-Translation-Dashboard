@@ -6,8 +6,8 @@ import { useTranslation } from "../hook/useTranslation";
 
 function Main() {
 
-  const { keywords, languages, selectedlang } = useTranslation();
-  console.log(keywords, languages, selectedlang);
+  const { keywords, languages, selectedLang } = useTranslation();
+  console.log(keywords, languages, selectedLang);
 
   return (
     <>
@@ -16,7 +16,7 @@ function Main() {
           <h1>Word Translations</h1>
           <Languages />
         </div>
-        <KeywordList isEditable={false} />
+        <KeywordList />
 
       </div>
 

@@ -1,3 +1,4 @@
+// src/components/KeywordList.jsx
 import {
   DndContext,
   closestCenter,
@@ -17,12 +18,11 @@ import { useTranslation } from '../hook/useTranslation';
 import KeywordItems from './KeywordItems';
 
 // SortableItem component to handle individual draggable items
-const SortableItem = ({ id, keyword, index, isSortable, language }) => {
+const SortableItem = ({ id, keyword, index, isSortable, language, isEditable }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
     disabled: !isSortable,
   });
-
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -42,15 +42,16 @@ const SortableItem = ({ id, keyword, index, isSortable, language }) => {
         keyword={keyword}
         index={index}
         language={language}
+        isEditable={isEditable}
       />
     </div>
   );
 };
 
 // Main KeywordList component
-const KeywordList = () => {
+const KeywordList = ({ isEditable }) => {
   const { keywords, reorderKeywords, selectedLang } = useTranslation();
-
+  console.log('KeywordList - selectedLang:', selectedLang); // Debug: Check selectedLang
   // Set up sensors for drag-and-drop (mouse and keyboard support for accessibility)
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -95,8 +96,9 @@ const KeywordList = () => {
               id={keyword.id}
               keyword={keyword}
               index={index}
-              isSortable={true}
+              isSortable={isEditable} // Dragging is enabled only if editable
               language={selectedLang}
+              isEditable={isEditable} // Pass isEditable to KeywordItems
             />
           ))}
         </div>
