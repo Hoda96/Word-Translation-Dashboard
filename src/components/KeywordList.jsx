@@ -51,7 +51,7 @@ const SortableItem = ({ id, keyword, index, isSortable, language, isEditable }) 
 // Main KeywordList component
 const KeywordList = ({ isEditable }) => {
   const { keywords, reorderKeywords, selectedLang } = useTranslation();
-  console.log('KeywordList - selectedLang:', selectedLang); // Debug: Check selectedLang
+
   // Set up sensors for drag-and-drop (mouse and keyboard support for accessibility)
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -96,7 +96,7 @@ const KeywordList = ({ isEditable }) => {
               id={keyword.id}
               keyword={keyword}
               index={index}
-              isSortable={isEditable} // Dragging is enabled only if editable
+              isSortable={!isEditable} // Dragging is enabled only if editable
               language={selectedLang}
               isEditable={isEditable} // Pass isEditable to KeywordItems
             />

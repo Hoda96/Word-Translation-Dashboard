@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react"
 import { TranslationsContext } from "./context";
-
-const initialvalues = {
-    "keyword": [
-        { id: 1, word: "hello", translations: { en: "hello", fa: "سلام", de: "hallo" } },
-        { id: 2, word: "world", translations: { en: "world", fa: "جهان", de: "welt" } },
-        { id: 3, word: "apple", translations: { en: "apple", fa: "سیب", de: "apfel" } }
-    ],
-    "languages": ["en", "fa", "de"]
-}
+import initialWords from "../data/initialWords.json"
 
 
 function TranslationsProvider({ children }) {
     const [keywords, setKeywords] = useState(() => {
         const storedKeywords = localStorage.getItem("keywords")
-        return storedKeywords ? JSON.parse(storedKeywords) : initialvalues.keyword
+        return storedKeywords ? JSON.parse(storedKeywords) : initialWords.keyword
     });
 
     const [selectedLang, setSelectedLang] = useState("en");
@@ -45,7 +37,7 @@ function TranslationsProvider({ children }) {
             });
         } else {
             const newId = crypto.randomUUID();
-            const newTranslations = initialvalues.languages.reduce((acc, language) => {
+            const newTranslations = initialWords.languages.reduce((acc, language) => {
                 acc[language] = language === lang ? translation : '';
                 return acc;
             }, {});
@@ -108,7 +100,7 @@ function TranslationsProvider({ children }) {
     };
 
     useEffect(() => {
-        localStorage.setItem('translationData', JSON.stringify({ keywords, languages: initialvalues.languages }));
+        localStorage.setItem('translationData', JSON.stringify({ keywords, languages: initialWords.languages }));
     }, [keywords]);
 
 
@@ -117,7 +109,7 @@ function TranslationsProvider({ children }) {
         <TranslationsContext.Provider
             value=
             {{
-                keywords, reorderKeywords, addKeyword, changeTranslation, languages: initialvalues.languages, selectedLang, setSelectedLang
+                keywords, reorderKeywords, addKeyword, changeTranslation, languages: initialWords.languages, selectedLang, setSelectedLang
             }}
         >
             {children}

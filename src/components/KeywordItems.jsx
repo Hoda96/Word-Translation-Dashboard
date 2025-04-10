@@ -1,12 +1,10 @@
-// src/components/KeywordItems.jsx
 import { useTranslation } from '../hook/useTranslation';
 
 const KeywordItems = ({ keyword, language, isEditable }) => {
-  const { updateTranslation } = useTranslation();
-  console.log('keyword.translations[language]', keyword.translations[language]);
+  const { changeTranslation } = useTranslation();
 
   const handleInputMouseDown = (e) => {
-    e.stopPropagation(); // Prevent drag from starting when clicking the input
+    e.stopPropagation();
   };
 
   return (
@@ -16,12 +14,12 @@ const KeywordItems = ({ keyword, language, isEditable }) => {
         <input
           type="text"
           value={keyword.translations[language] || ''}
-          onChange={(e) => updateTranslation(keyword.id, language, e.target.value)}
+          onChange={(e) => changeTranslation(keyword.id, language, e.target.value)}
           onMouseDown={handleInputMouseDown}
           placeholder="Enter translation"
         />
       ) : (
-        <span>{keyword.translations[language] || 'No translation yet'}</span>
+        <span>{keyword.translations[language] || '...'}</span>
       )}
     </div>
   );

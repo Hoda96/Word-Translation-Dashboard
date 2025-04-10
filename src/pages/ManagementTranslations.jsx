@@ -22,10 +22,12 @@ function ManagementDashboard() {
 
   return (
     <div className="management-dashboard">
-      <h1>Translation Management</h1>
-      <Languages />
-      <KeywordList isEditable={true} />
+      <div className='header'>
+        <h1>Translation Management</h1>
+        <Languages />
+      </div>
 
+      <KeywordList isEditable={false} />
       <div className="add-keyword" >
         <button onClick={handleAddKeyword}>+ Add Keyword</button>
         {showAddKeyword &&

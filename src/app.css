@@ -47,11 +47,9 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border-bottom: 1px solid #dddddd6b;
 }
 
 .keyword-item span {
@@ -60,7 +58,7 @@ h1 {
 
 .keyword-item input {
   padding: 5px;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   border-radius: 5px;
   width: 50%;
 }
@@ -96,19 +94,10 @@ h1 {
 }
 
 .keyword-list {
-  margin: 0 auto;
-}
-
-.keyword-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 10px;
   background-color: #fff;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  cursor: grab; /* Indicate draggability */
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .keyword-item:active {

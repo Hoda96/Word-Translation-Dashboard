@@ -1,0 +1,8 @@
+{
+    "keyword": [
+      { "id": 1, "word": "hello", "translations": { "en": "hello", "fa": "سلام", "de": "hallo" } },
+      { "id": 2, "word": "world", "translations": { "en": "world", "fa": "جهان", "de": "welt" } },
+      { "id": 3, "word": "apple", "translations": { "en": "apple", "fa": "سیب", "de": "apfel" } }
+    ],
+    "languages": ["en", "fa", "de"]
+  }
