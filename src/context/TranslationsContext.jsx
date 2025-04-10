@@ -20,31 +20,45 @@ function TranslationsProvider({ children }) {
     const [selectedlang, setSelectedLang] = useState("en");
 
     const addKeyword = (word, translation, lang) => {
-        // Check if the keyword already exists
         const existingKeyword = keywords.find((k) => k.word === word);
+
+        let updatedKeywords;
+
         if (existingKeyword) {
-            alert('Keyword already exists');
-            return;
+            // Check if the language already has a translation
+            if (existingKeyword.translations[lang]) {
+                alert(`Translation for ${lang} already exists for "${word}"`);
+                return;
+            }
+
+            updatedKeywords = keywords.map((keyword) => {
+                if (keyword.word === word) {
+                    return {
+                        ...keyword,
+                        translations: {
+                            ...keyword.translations,
+                            [lang]: translation,
+                        },
+                    };
+                }
+                return keyword;
+            });
+        } else {
+            const newId = crypto.randomUUID();
+            const newTranslations = initialvalues.languages.reduce((acc, language) => {
+                acc[language] = language === lang ? translation : '';
+                return acc;
+            }, {});
+
+            const newKeyword = {
+                id: newId,
+                word: word,
+                translations: newTranslations,
+            };
+
+            updatedKeywords = [...keywords, newKeyword];
         }
 
-        const newId = crypto.randomUUID();
-
-        // Create the translations object with the specified language having the translation,
-        // and other languages having empty translations
-        const newTranslations = initialvalues.languages.reduce((acc, language) => {
-            acc[language] = language === lang ? translation : '';
-            return acc;
-        }, {});
-
-        // Create the new keyword object
-        const newKeyword = {
-            id: newId,
-            word: word,
-            translations: newTranslations,
-        };
-
-        // Update the keywords array and state
-        const updatedKeywords = [...keywords, newKeyword];
         setKeywords(updatedKeywords);
         localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
     };
