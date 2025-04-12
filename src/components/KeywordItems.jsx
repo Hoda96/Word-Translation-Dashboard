@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { useTranslation } from '../hook/useTranslation';
 
-const KeywordItems = ({ keyword, language, isEditable }) => {
+const KeywordItems = ({ keyword, language }) => {
+
   const { changeTranslation } = useTranslation();
+  const [isEditable, setIsEditable] = useState(false);
 
   const handleInputMouseDown = (e) => {
-    e.stopPropagation();
+    e.preventDefault();
+    setIsEditable((prev) => !prev)
   };
 
   return (
@@ -15,11 +19,12 @@ const KeywordItems = ({ keyword, language, isEditable }) => {
           type="text"
           value={keyword.translations[language] || ''}
           onChange={(e) => changeTranslation(keyword.id, language, e.target.value)}
-          onMouseDown={handleInputMouseDown}
+          onMouseDown={(e) => e.stopPropagation()}
           placeholder="Enter translation"
         />
       ) : (
-        <span>{keyword.translations[language] || '...'}</span>
+        <span onClick={(e) => handleInputMouseDown(e)
+        }>{keyword.translations[language] || '...'}</span>
       )}
     </div>
   );

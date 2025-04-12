@@ -66,15 +66,15 @@ function TranslationsProvider({ children }) {
         }
 
         // Check if there are any languages without a translation
-        const hasEmptyTranslation = Object.values(keywordToUpdate.translations).some(
-            (translation) => translation === ''
-        );
+        // const hasEmptyTranslation = Object.values(keywordToUpdate.translations).some(
+        //     (translation) => translation === ''
+        // );
 
-        // If there are no empty translations, do nothing
-        if (!hasEmptyTranslation) {
-            console.log('All languages already have translations, no update needed');
-            return;
-        }
+        // // If there are no empty translations, do nothing
+        // if (!hasEmptyTranslation) {
+        //     console.log('All languages already have translations, no update needed');
+        //     return;
+        // }
 
         // Update the translation for the specified language
         const updatedKeywords = keywords.map((keyword) => {

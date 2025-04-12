@@ -1,6 +1,6 @@
 import TranslationsProvider from "./context/TranslationsContext"
-import Main from "./pages/main";
-import ManagementTranslations from "./pages/managementTranslations";
+import Main from "./pages/Main";
+import ManagementTranslations from "./pages/ManagementTranslations";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 function App() {
 

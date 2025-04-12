@@ -27,7 +27,7 @@ function ManagementDashboard() {
         <Languages />
       </div>
 
-      <KeywordList isEditable={false} />
+      <KeywordList isEditable={true} />
       <div className="add-keyword" >
         <button onClick={handleAddKeyword}>+ Add Keyword</button>
         {showAddKeyword &&

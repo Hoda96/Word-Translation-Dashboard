@@ -18,7 +18,7 @@ import { useTranslation } from '../hook/useTranslation';
 import KeywordItems from './KeywordItems';
 
 // SortableItem component to handle individual draggable items
-const SortableItem = ({ id, keyword, index, isSortable, language, isEditable }) => {
+const SortableItem = ({ id, keyword, index, isSortable, language }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
     disabled: !isSortable,
@@ -42,7 +42,7 @@ const SortableItem = ({ id, keyword, index, isSortable, language, isEditable }) 
         keyword={keyword}
         index={index}
         language={language}
-        isEditable={isEditable}
+        // isEditable={isEditable}
       />
     </div>
   );
@@ -96,9 +96,9 @@ const KeywordList = ({ isEditable }) => {
               id={keyword.id}
               keyword={keyword}
               index={index}
-              isSortable={!isEditable} // Dragging is enabled only if editable
+              isSortable={isEditable} // Dragging is enabled only if editable
               language={selectedLang}
-              isEditable={isEditable} // Pass isEditable to KeywordItems
+              isEditable={false} // Pass isEditable to KeywordItems
             />
           ))}
         </div>
