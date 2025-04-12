@@ -2,13 +2,24 @@ import { useState } from 'react';
 import { useTranslation } from '../hook/useTranslation';
 
 const KeywordItems = ({ keyword, language }) => {
-
   const { changeTranslation } = useTranslation();
   const [isEditable, setIsEditable] = useState(false);
+  const [inputValue, setInputValue] = useState(keyword.translations[language] || '');
 
-  const handleInputMouseDown = (e) => {
+  const handleInputClick = (e) => {
     e.preventDefault();
-    setIsEditable((prev) => !prev)
+    setIsEditable(true);
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      changeTranslation(keyword.id, language, inputValue);
+      setIsEditable(false);
+    }
   };
 
   return (
@@ -17,14 +28,21 @@ const KeywordItems = ({ keyword, language }) => {
       {isEditable ? (
         <input
           type="text"
-          value={keyword.translations[language] || ''}
-          onChange={(e) => changeTranslation(keyword.id, language, e.target.value)}
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          onBlur={() => {
+            changeTranslation(keyword.id, language, inputValue);
+            setIsEditable(false);
+          }}
           onMouseDown={(e) => e.stopPropagation()}
           placeholder="Enter translation"
+          autoFocus
         />
       ) : (
-        <span onClick={(e) => handleInputMouseDown(e)
-        }>{keyword.translations[language] || '...'}</span>
+        <span onClick={handleInputClick}>
+          {keyword.translations[language] || '...'}
+        </span>
       )}
     </div>
   );
